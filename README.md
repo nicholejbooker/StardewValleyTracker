@@ -1,5 +1,7 @@
 # StardewTracker Django Project
 
+**[View on GitHub](https://github.com/nicholejbooker/StardewValleyTracker)**
+
 A small Stardew Valley companion web app built with **Django**.  
 The first feature is an **interactive in-game calendar** that shows **villager birthdays** and **seasonal events**, with a **bright, cheery theme** and optional **dark mode**.
 
