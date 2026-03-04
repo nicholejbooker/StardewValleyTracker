@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Stardew Calendar - {{ season }}</title>
+    <link rel="stylesheet" href="{% static 'calendar_app/css/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-title-group">
+            <h1 class="site-title">Stardew Valley Calendar</h1>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" type="button">
+            Toggle Dark Mode
+        </button>
+    </header>
+
+    <main class="content">
+        <section class="season-switcher">
+            <h2 class="season-heading">Season: {{ season }}</h2>
+            <nav class="season-tabs" aria-label="Season selector">
+                {% for s in seasons %}
+                    <a
+                        href="{% url 'calendar_app:calendar_by_season' s %}"
+                        class="season-tab{% if s == season %} season-tab--active{% endif %}"
+                    >
+                        {{ s }}
+                    </a>
+                {% endfor %}
+            </nav>
+        </section>
+
+        <section class="calendar-section">
+            <div class="calendar-grid" aria-label="{{ season }} calendar">
+                {% for item in calendar_days %}
+                    <article class="calendar-day" data-day="{{ item.day }}" tabindex="0">
+                        <header class="calendar-day-header">
+                            <span class="day-number">{{ item.day }}</span>
+                        </header>
+                        <ul class="event-list">
+                            {% comment %}
+                            When there are no events for a day, we intentionally leave
+                            the cell visually empty instead of showing placeholder text.
+                            {% endcomment %}
+                            {% if item.events %}
+                                {% for event in item.events %}
+                                    <li class="event-pill event-pill--{{ event.type }}">
+                                        <span class="event-label">{{ event.label }}</span>
+                                        {% if event.note %}
+                                            <span class="event-note">{{ event.note }}</span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </article>
+                {% endfor %}
+            </div>
+            {# Usage hint removed for production users. #}
+        </section>
+    </main>
+
+    <script src="{% static 'calendar_app/js/calendar.js' %}"></script>
+</body>
+</html>
+

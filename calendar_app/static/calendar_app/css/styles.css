@@ -1,0 +1,295 @@
+:root {
+  --bg: #f5f4e6;
+  --bg-elevated: #ffffff;
+  --bg-accent: #ffeeb8;
+  --text: #3a2b1c;
+  --text-soft: #6d5c47;
+  --border-subtle: #e1d6b8;
+  --accent: #ffb347;
+  --accent-soft: #ffd9a3;
+  --accent-strong: #ff7b72;
+  --birthday: #ffb3c6;
+  --festival: #b3e6ff;
+  --empty: #e8e2cf;
+  --shadow-soft: 0 8px 18px rgba(64, 40, 20, 0.1);
+  --radius-large: 18px;
+  --radius-pill: 999px;
+  --transition-fast: 150ms ease-out;
+}
+
+html[data-theme="dark"] {
+  --bg: #141821;
+  --bg-elevated: #1f2533;
+  --bg-accent: #252d3d;
+  --text: #f6f3e7;
+  --text-soft: #c9c3af;
+  --border-subtle: #323b4a;
+  --accent: #ffd76a;
+  --accent-soft: #6c4cff;
+  --accent-strong: #ff9e7b;
+  --birthday: #5b4360;
+  --festival: #285a73;
+  --empty: #2b3040;
+  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #fff7d1 0, var(--bg) 45%, var(--bg) 100%);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-theme="dark"] body {
+  background: radial-gradient(circle at top, #1a2030 0, var(--bg) 45%, var(--bg) 100%);
+}
+
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem 5vw;
+  gap: 0.75rem;
+}
+
+.site-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: center;
+}
+
+.site-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+  letter-spacing: 0.03em;
+}
+
+.theme-toggle {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    filter var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.content {
+  flex: 1;
+  padding: 0 5vw 3rem;
+}
+
+.season-switcher {
+  max-width: 960px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-large);
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-accent));
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.season-heading {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.season-tabs {
+  display: inline-flex;
+  padding: 0.18rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.season-tab {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  color: var(--text-soft);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.season-tab:hover {
+  transform: translateY(-1px);
+}
+
+.season-tab--active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #24170b;
+}
+
+html[data-theme="dark"] .season-tabs {
+  background: rgba(17, 20, 32, 0.9);
+}
+
+html[data-theme="dark"] .season-tab--active {
+  color: #0d0b12;
+}
+
+.calendar-section {
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  padding: 1.4rem 1.4rem 1.1rem;
+  border-radius: 24px;
+  background-color: var(--bg-elevated);
+  box-shadow: var(--shadow-soft);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.calendar-day {
+  position: relative;
+  padding: 0.55rem 0.55rem 0.6rem;
+  border-radius: 18px;
+  background: linear-gradient(145deg, var(--bg-accent), var(--bg-elevated));
+  border: 1px solid var(--border-subtle);
+  min-height: 4.6rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.calendar-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+}
+
+.calendar-day:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.calendar-day--active {
+  border-color: var(--accent-strong);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  transform: translateY(-2px);
+}
+
+.calendar-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-number {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.event-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-pill--birthday {
+  background: linear-gradient(135deg, var(--birthday), var(--accent-soft));
+  color: #4b2731;
+}
+
+.event-pill--festival {
+  background: linear-gradient(135deg, var(--festival), #e8ffe4);
+  color: #153947;
+}
+
+.event-pill--empty {
+  background-color: var(--empty);
+  color: var(--text-soft);
+  opacity: 0.9;
+}
+
+.event-note {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+@media (max-width: 800px) {
+  .calendar-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .calendar-day {
+    min-height: 4.2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .calendar-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .calendar-section {
+    padding-inline: 1rem;
+  }
+}
+
