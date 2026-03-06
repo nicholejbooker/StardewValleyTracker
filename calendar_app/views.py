@@ -1,4 +1,5 @@
 from collections import defaultdict
+import re
 from typing import Any, Dict, List
 
 from django.http import HttpRequest, HttpResponse
@@ -18,6 +19,14 @@ def _normalize_season(raw: str | None) -> Season:
         return "Spring"
     return normalized  # type: ignore[return-value]
 
+def _slugify_asset_name(name: str) -> str:
+    """
+    Create a stable, filesystem-friendly slug for static asset filenames.
+    Example: "Mr. Qi" -> "mr-qi"
+    """
+    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    return slug or "unknown"
+
 
 def calendar_view(request: HttpRequest, season: str | None = None) -> HttpResponse:
     active_season: Season = _normalize_season(season)
@@ -32,6 +41,7 @@ def calendar_view(request: HttpRequest, season: str | None = None) -> HttpRespon
                     "type": "birthday",
                     "label": f"{bday.villager}'s Birthday",
                     "villager": bday.villager,
+                    "villager_slug": _slugify_asset_name(bday.villager),
                 }
             )
 
