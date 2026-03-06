@@ -9,7 +9,12 @@ SECRET_KEY = "replace-this-with-a-strong-secret-key"
 
 DEBUG = True
 
-ALLOWED_HOSTS: list[str] = []
+_allowed_hosts_raw = os.environ.get("DJANGO_ALLOWED_HOSTS", "")
+if _allowed_hosts_raw.strip():
+    ALLOWED_HOSTS = [h.strip() for h in _allowed_hosts_raw.split(",") if h.strip()]
+else:
+    # Local dev defaults (including Docker port-forwarding).
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 
 INSTALLED_APPS = [
