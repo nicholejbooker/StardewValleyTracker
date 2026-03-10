@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Stardew Calendar - {{ season }}</title>
+    <script>
+      (function() {
+        var t = localStorage.getItem('stardewTheme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="{% static 'calendar_app/css/styles.css' %}">
 </head>
 <body>
