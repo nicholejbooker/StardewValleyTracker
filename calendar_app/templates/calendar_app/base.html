@@ -57,7 +57,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const root = document.documentElement;
-        const themeToggle = document.getElementById("theme-toggle");
+        let themeToggle = document.getElementById("theme-toggle");
         const THEME_KEY = "stardewTheme";
 
         function applyTheme(theme) {
@@ -74,13 +74,25 @@
           applyTheme("light");
         }
 
-        if (themeToggle) {
+        function attachToggle() {
+          themeToggle = document.getElementById("theme-toggle");
+          if (!themeToggle) return false;
+          if (themeToggle.dataset.themeToggleBound === "1") return true;
+          themeToggle.dataset.themeToggleBound = "1";
           themeToggle.addEventListener("click", () => {
             const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
             const next = current === "dark" ? "light" : "dark";
             window.localStorage.setItem(THEME_KEY, next);
             applyTheme(next);
           });
+          return true;
+        }
+
+        // Defensive: if the button isn't present yet for some reason, retry briefly.
+        attachToggle();
+        if (!themeToggle) {
+          setTimeout(attachToggle, 0);
+          setTimeout(attachToggle, 50);
         }
       });
     </script>
