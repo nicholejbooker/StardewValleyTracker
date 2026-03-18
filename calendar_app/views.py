@@ -11,6 +11,10 @@ from .data import FESTIVALS, VILLAGER_BIRTHDAYS, Season
 SEASONS: list[Season] = ["Spring", "Summer", "Fall", "Winter"]
 
 
+def landing_view(request: HttpRequest) -> HttpResponse:
+    return render(request, "calendar_app/landing.html")
+
+
 def _normalize_season(raw: str | None) -> Season:
     if not raw:
         return "Spring"

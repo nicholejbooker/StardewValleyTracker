@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "SV";
+  src: url("../fonts/svthin.otf.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SV";
+  src: url("../fonts/svbold.otf.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #f5f4e6;
   --bg-elevated: #ffffff;
@@ -42,11 +58,17 @@ html[data-theme="dark"] {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "SV", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.45;
   background: radial-gradient(circle at top, #fff7d1 0, var(--bg) 45%, var(--bg) 100%);
   color: var(--text);
   display: flex;
   flex-direction: column;
+}
+
+/* Scale all rem-based typography up for legibility. */
+html {
+  font-size: 20px;
 }
 
 html[data-theme="dark"] body {
@@ -74,14 +96,16 @@ html[data-theme="dark"] body {
   margin: 0;
   font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
   letter-spacing: 0.03em;
+  font-weight: 700;
 }
 
 .theme-toggle {
   border: 0;
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.9rem;
+  font-family: inherit;
   color: var(--text);
   background: linear-gradient(135deg, var(--accent-soft), var(--accent));
   box-shadow: var(--shadow-soft);
@@ -127,6 +151,7 @@ html[data-theme="dark"] body {
 .season-heading {
   margin: 0;
   font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .season-tabs {
@@ -141,7 +166,7 @@ html[data-theme="dark"] body {
 .season-tab {
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 400;
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
   color: var(--text-soft);
@@ -206,7 +231,7 @@ html[data-theme="dark"] .season-tab--active {
 .day-popover-heading {
   margin: 0 0 0.35rem;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .day-popover-body {
@@ -228,7 +253,7 @@ html[data-theme="dark"] .season-tab--active {
 }
 
 .day-popover-item-main {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .day-popover-item-note {
@@ -305,7 +330,7 @@ html[data-theme="dark"] .season-tab--active {
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-pill);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 400;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
@@ -349,7 +374,7 @@ html[data-theme="dark"] .season-tab--active {
 }
 
 .event-note {
-  font-weight: 500;
+  font-weight: 400;
   opacity: 0.8;
 }
 
@@ -370,5 +395,152 @@ html[data-theme="dark"] .season-tab--active {
   .calendar-section {
     padding-inline: 1rem;
   }
+}
+
+/* Landing page */
+.landing-header {
+  display: grid;
+  grid-template-columns: 220px 1px minmax(0, 1fr);
+  align-items: center;
+  padding: 1.25rem 5vw 1.25rem 0;
+  position: relative;
+}
+
+.landing-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+  letter-spacing: 0.03em;
+  text-align: center;
+  grid-column: 3;
+  justify-self: center;
+}
+
+.landing-layout {
+  display: grid;
+  grid-template-columns: 220px 1px minmax(0, 1fr);
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+  padding: 0 5vw 3rem 0;
+  min-height: calc(100vh - 110px);
+}
+
+.landing-sidebar {
+  width: 220px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 1.1rem 1.15rem;
+  height: 100%;
+  min-height: 60vh;
+}
+
+.landing-divider {
+  width: 1px;
+  background: var(--border-subtle);
+  height: 100%;
+}
+
+.landing-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.landing-nav-label {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.landing-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 0.2rem 0;
+  width: auto;
+  border-radius: 0;
+  color: var(--text-soft);
+  transition: color var(--transition-fast), filter var(--transition-fast);
+}
+
+.landing-nav-link:hover {
+  color: var(--text);
+}
+
+.landing-nav-link--active {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.landing-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.25rem;
+}
+
+.landing-hero {
+  width: 100%;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 1.6rem 0;
+  margin-top: 0;
+  text-align: center;
+}
+
+.landing-hero-title {
+  margin: 0 0 0.6rem;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.landing-hero-copy {
+  margin: 0 0 1.1rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.landing-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #24170b;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.landing-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+html[data-theme="dark"] .landing-nav-link {
+  color: var(--text-soft);
+}
+
+/* Intentionally keep the sidebar on the left at all widths. */
+
+/* Keep the theme button from shifting the centered header text */
+.landing-header #theme-toggle {
+  position: absolute;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
