@@ -33,7 +33,13 @@
         <aside class="landing-sidebar">
             <nav class="landing-nav" aria-label="Main navigation">
                 <a
-                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'calendar' %} landing-nav-link--active{% endif %}"
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'landing' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:landing' %}"
+                >
+                    Home
+                </a>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'calendar' %} landing-nav-link--active{% endif %}{% if request.resolver_match and request.resolver_match.url_name == 'calendar_by_season' %} landing-nav-link--active{% endif %}"
                     href="{% url 'calendar_app:calendar' %}"
                 >
                     Calendar
