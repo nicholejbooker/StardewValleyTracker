@@ -32,7 +32,6 @@
     <div class="landing-layout">
         <aside class="landing-sidebar">
             <nav class="landing-nav" aria-label="Main navigation">
-                <div class="landing-nav-label">Navigation</div>
                 <a
                     class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'calendar' %} landing-nav-link--active{% endif %}"
                     href="{% url 'calendar_app:calendar' %}"
