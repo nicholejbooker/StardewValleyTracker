@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Star-Done Valley{% endblock %}</title>
+
+    <script>
+      (function() {
+        var t = localStorage.getItem("stardewTheme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'calendar_app/css/styles.css' %}?v=4">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="landing-header">
+        <h1 class="landing-title">Star-Done Valley</h1>
+        <button id="theme-toggle" class="theme-toggle" type="button">
+            Toggle Dark Mode
+        </button>
+    </header>
+
+    <div class="landing-layout">
+        <aside class="landing-sidebar">
+            <nav class="landing-nav" aria-label="Main navigation">
+                <div class="landing-nav-label">Navigation</div>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'calendar' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:calendar' %}"
+                >
+                    Calendar
+                </a>
+            </nav>
+        </aside>
+
+        <div class="landing-divider" aria-hidden="true"></div>
+
+        <main class="landing-main">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("theme-toggle");
+        const THEME_KEY = "stardewTheme";
+
+        function applyTheme(theme) {
+          root.setAttribute("data-theme", theme);
+          if (themeToggle) {
+            themeToggle.textContent = theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+          }
+        }
+
+        const storedTheme = window.localStorage.getItem(THEME_KEY);
+        if (storedTheme === "dark" || storedTheme === "light") {
+          applyTheme(storedTheme);
+        } else {
+          applyTheme("light");
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+            const next = current === "dark" ? "light" : "dark";
+            window.localStorage.setItem(THEME_KEY, next);
+            applyTheme(next);
+          });
+        }
+      });
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+

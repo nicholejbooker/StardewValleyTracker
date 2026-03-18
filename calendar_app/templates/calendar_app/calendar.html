@@ -1,33 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <title>Stardew Calendar - {{ season }}</title>
-    <script>
-      (function() {
-        var t = localStorage.getItem('stardewTheme');
-        if (t === 'dark' || t === 'light') {
-          document.documentElement.setAttribute('data-theme', t);
-        }
-      })();
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'calendar_app/css/styles.css' %}?v=3">
-</head>
-<body>
-    <header class="site-header">
-        <div class="site-title-group">
-            <h1 class="site-title">Stardew Calendar</h1>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" type="button">
-            Toggle Dark Mode
-        </button>
-    </header>
+{% extends "calendar_app/base.html" %}
 
-    <main class="content">
+{% block title %}Stardew Calendar - {{ season }}{% endblock %}
+
+{% block content %}
         <section class="season-switcher">
             <h2 class="season-heading">{{ season }}</h2>
             <nav class="season-tabs" aria-label="Season selector">
@@ -82,9 +57,9 @@
             </div>
             {# Usage hint removed for production users. #}
         </section>
-    </main>
+{% endblock %}
 
+{% block scripts %}
     <script src="{% static 'calendar_app/js/calendar.js' %}"></script>
-</body>
-</html>
+{% endblock %}
 
