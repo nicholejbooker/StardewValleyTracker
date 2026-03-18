@@ -389,34 +389,29 @@ html[data-theme="dark"] .season-tab--active {
 }
 
 .landing-layout {
-  display: flex;
-  gap: 1.25rem;
+  display: grid;
+  grid-template-columns: 220px 1px minmax(0, 1fr);
   align-items: stretch;
+  width: 100%;
   position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 5vw 3rem;
+  padding: 0 5vw 3rem 0;
+  min-height: calc(100vh - 110px);
 }
 
 .landing-sidebar {
   width: 220px;
-  flex: 0 0 auto;
-  border-radius: var(--radius-large);
-  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-accent));
-  box-shadow: var(--shadow-soft);
-  padding: 0.9rem;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 1.1rem 1.15rem;
   height: 100%;
   min-height: 60vh;
-  padding-right: 1.15rem;
 }
 
 .landing-divider {
-  flex: 0 0 auto;
   width: 1px;
   background: var(--border-subtle);
-  min-height: 60vh;
-  margin-top: 0.15rem;
-  margin-bottom: 0.15rem;
+  height: 100%;
 }
 
 .landing-nav {
@@ -426,49 +421,50 @@ html[data-theme="dark"] .season-tab--active {
   align-items: flex-start;
 }
 
+.landing-nav-label {
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
 .landing-nav-link {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
   font-weight: 800;
-  padding: 0.75rem 0.9rem;
-  width: 100%;
-  border-radius: 14px;
+  padding: 0.2rem 0;
+  width: auto;
+  border-radius: 0;
   color: var(--text-soft);
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  transition:
-    transform var(--transition-fast),
-    background var(--transition-fast),
-    border-color var(--transition-fast);
+  transition: color var(--transition-fast), filter var(--transition-fast);
 }
 
 .landing-nav-link:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.85);
+  color: var(--text);
 }
 
 .landing-nav-link--active {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  color: #24170b;
-  border-color: transparent;
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .landing-main {
-  flex: 1;
   min-width: 0;
   display: flex;
+  padding-left: 1.25rem;
 }
 
 .landing-hero {
   width: 100%;
-  border-radius: 24px;
-  background-color: var(--bg-elevated);
-  box-shadow: var(--shadow-soft);
-  padding: 1.6rem 1.5rem;
-  margin-top: 0.15rem;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 1.6rem 0;
+  margin-top: 0;
   text-align: center;
 }
 
@@ -506,39 +502,10 @@ html[data-theme="dark"] .season-tab--active {
 }
 
 html[data-theme="dark"] .landing-nav-link {
-  background: rgba(17, 20, 32, 0.65);
-  border-color: var(--border-subtle);
   color: var(--text-soft);
 }
 
-html[data-theme="dark"] .landing-nav-link:hover {
-  background: rgba(17, 20, 32, 0.85);
-}
-
-@media (max-width: 700px) {
-  .landing-layout {
-    flex-direction: column;
-    padding-bottom: 2rem;
-  }
-
-  .landing-divider {
-    width: 100%;
-    height: 1px;
-    min-height: 0;
-    margin: 0.75rem 0;
-  }
-
-  .landing-sidebar {
-    width: 100%;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-right: 0.9rem;
-    padding-bottom: 1rem;
-  }
-
-  .landing-main {
-    min-height: 10rem;
-  }
-}
+/* Intentionally keep the sidebar on the left at all widths. */
 
 /* Keep the theme button from shifting the centered header text */
 .landing-header #theme-toggle {
