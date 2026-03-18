@@ -82,6 +82,7 @@ html[data-theme="dark"] body {
   padding: 0.5rem 1.1rem;
   font-weight: 600;
   font-size: 0.9rem;
+  font-family: inherit;
   color: var(--text);
   background: linear-gradient(135deg, var(--accent-soft), var(--accent));
   box-shadow: var(--shadow-soft);
