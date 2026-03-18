@@ -376,20 +376,22 @@ html[data-theme="dark"] .season-tab--active {
 .landing-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
   padding: 1.25rem 5vw;
+  position: relative;
 }
 
 .landing-title {
   margin: 0;
   font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
   letter-spacing: 0.03em;
+  text-align: center;
 }
 
 .landing-layout {
   display: flex;
   gap: 1.25rem;
+  align-items: stretch;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 5vw 3rem;
@@ -402,21 +404,27 @@ html[data-theme="dark"] .season-tab--active {
   background: linear-gradient(135deg, var(--bg-elevated), var(--bg-accent));
   box-shadow: var(--shadow-soft);
   padding: 0.9rem;
-  height: fit-content;
+  height: 100%;
+  min-height: 60vh;
+  border-right: 1px solid var(--border-subtle);
+  padding-right: 1.15rem;
 }
 
 .landing-nav {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  align-items: flex-start;
 }
 
 .landing-nav-link {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
   text-decoration: none;
   font-weight: 800;
   padding: 0.75rem 0.9rem;
+  width: 100%;
   border-radius: 14px;
   color: var(--text-soft);
   background: rgba(255, 255, 255, 0.7);
@@ -452,17 +460,20 @@ html[data-theme="dark"] .season-tab--active {
   box-shadow: var(--shadow-soft);
   padding: 1.6rem 1.5rem;
   margin-top: 0.15rem;
+  text-align: center;
 }
 
 .landing-hero-title {
   margin: 0 0 0.6rem;
   font-size: 1.4rem;
+  text-align: center;
 }
 
 .landing-hero-copy {
   margin: 0 0 1.1rem;
   color: var(--text-soft);
   line-height: 1.5;
+  text-align: center;
 }
 
 .landing-cta {
@@ -503,10 +514,22 @@ html[data-theme="dark"] .landing-nav-link:hover {
 
   .landing-sidebar {
     width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-right: 0.9rem;
+    padding-bottom: 1rem;
   }
 
   .landing-main {
     min-height: 10rem;
   }
+}
+
+/* Keep the theme button from shifting the centered header text */
+.landing-header #theme-toggle {
+  position: absolute;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
