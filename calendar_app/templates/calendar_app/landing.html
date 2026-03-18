@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Star-Done Valley</title>
+    <script>
+      (function() {
+        var t = localStorage.getItem("stardewTheme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="{% static 'calendar_app/css/styles.css' %}">
+</head>
+<body>
+    <header class="landing-header">
+        <h1 class="landing-title">Star-Done Valley</h1>
+        <button id="theme-toggle" class="theme-toggle" type="button">
+            Toggle Dark Mode
+        </button>
+    </header>
+
+    <div class="landing-layout">
+        <aside class="landing-sidebar">
+            <nav class="landing-nav" aria-label="Main navigation">
+                <a class="landing-nav-link landing-nav-link--active" href="{% url 'calendar_app:calendar' %}">
+                    Calendar
+                </a>
+            </nav>
+        </aside>
+
+        <main class="landing-main">
+            <section class="landing-hero">
+                <h2 class="landing-hero-title">Welcome!</h2>
+                <p class="landing-hero-copy">
+                    This is your Stardew Valley companion for birthdays and seasonal events.
+                </p>
+                <a class="landing-cta" href="{% url 'calendar_app:calendar' %}">
+                    Open Calendar
+                </a>
+            </section>
+        </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("theme-toggle");
+        const THEME_KEY = "stardewTheme";
+
+        function applyTheme(theme) {
+          root.setAttribute("data-theme", theme);
+          if (themeToggle) {
+            themeToggle.textContent = theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+          }
+        }
+
+        const storedTheme = window.localStorage.getItem(THEME_KEY);
+        if (storedTheme === "dark" || storedTheme === "light") {
+          applyTheme(storedTheme);
+        } else {
+          applyTheme("light");
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+            const next = current === "dark" ? "light" : "dark";
+            window.localStorage.setItem(THEME_KEY, next);
+            applyTheme(next);
+          });
+        }
+      });
+    </script>
+</body>
+</html>
+
