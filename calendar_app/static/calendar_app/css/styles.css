@@ -374,10 +374,10 @@ html[data-theme="dark"] .season-tab--active {
 
 /* Landing page */
 .landing-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 220px 1px minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  padding: 1.25rem 5vw;
+  padding: 1.25rem 5vw 1.25rem 0;
   position: relative;
 }
 
@@ -386,6 +386,8 @@ html[data-theme="dark"] .season-tab--active {
   font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
   letter-spacing: 0.03em;
   text-align: center;
+  grid-column: 3;
+  justify-self: center;
 }
 
 .landing-layout {
