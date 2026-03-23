@@ -15,6 +15,15 @@ def landing_view(request: HttpRequest) -> HttpResponse:
     return render(request, "calendar_app/landing.html")
 
 
+def coming_soon_view(request: HttpRequest, page_title: str) -> HttpResponse:
+    """Placeholder for nav pages you’ll flesh out later."""
+    return render(
+        request,
+        "calendar_app/coming_soon.html",
+        {"page_title": page_title},
+    )
+
+
 def _normalize_season(raw: str | None) -> Season:
     if not raw:
         return "Spring"

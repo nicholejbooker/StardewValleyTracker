@@ -40,6 +40,42 @@
                 >
                     Calendar
                 </a>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'perfection' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:perfection' %}"
+                >
+                    Perfection
+                </a>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'relationships' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:relationships' %}"
+                >
+                    Relationships
+                </a>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'animals' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:animals' %}"
+                >
+                    Animals
+                </a>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'skills' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:skills' %}"
+                >
+                    Skills
+                </a>
+                <a
+                    class="landing-nav-link landing-nav-link--collections{% if request.resolver_match and request.resolver_match.url_name == 'collections' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:collections' %}"
+                >
+                    Collections
+                </a>
+                <a
+                    class="landing-nav-link{% if request.resolver_match and request.resolver_match.url_name == 'account' %} landing-nav-link--active{% endif %}"
+                    href="{% url 'calendar_app:account' %}"
+                >
+                    Account
+                </a>
             </nav>
         </aside>
 
