@@ -433,6 +433,8 @@ html[data-theme="dark"] .season-tab--active {
   padding: 1.1rem 1.15rem;
   height: 100%;
   min-height: 60vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .landing-divider {
@@ -446,6 +448,13 @@ html[data-theme="dark"] .season-tab--active {
   flex-direction: column;
   gap: 0.6rem;
   align-items: flex-start;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Pushes Collections + Account to the bottom of the sidebar; Account stays last */
+.landing-nav-link--collections {
+  margin-top: auto;
 }
 
 .landing-nav-label {
